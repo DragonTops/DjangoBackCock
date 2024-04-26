@@ -11,25 +11,21 @@ from django.db.utils import  IntegrityError
 #class
 #@csrf_exempt
 def createUser(request):
-    if "csrfmiddlewaretoken" in request.POST.keys():
-        try:
-            user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-            login(request, user)
-        except IntegrityError as error:
-            print(error.args[0]==1062)
-            if error.args[0]==1062:
-                return HttpResponse('{ response: UserExists, error: ' + str(error.args) + " }")
-            else:
-                return HttpResponse('{ response: UknownError}')
-        return HttpResponse('{success}')
-    else:
-    #try:
-    #    user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-    #except MySQLdb.IntegrityError as error:
-    #    print(error.args)
-    #    return HttpResponse('{ response: 404, ' + str(HttpResponse(get_token(request))) + "}")
-    ##if request.POST['username'] in User.username_validator
-        return HttpResponse(str(get_token(request)))
+    #request.session.modified = True
+    #if "csrfmiddlewaretoken" in request.POST.keys():
+    #    try:
+    #        user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
+    #        login(request, user)
+    #    except IntegrityError as error:
+    #        print(error.args[0]==1062)
+    #        if error.args[0]==1062:
+    #            return HttpResponse('{ response: UserExists, error: ' + str(error.args) + " }")
+    #        else:
+    #            return HttpResponse('{ response: UknownError}')
+    #    return HttpResponse('{success}')
+    #else:
+    context = {'hello': 'world'}
+    return render(request, 'index.html', {'djangoData': context})
 
 def loginUser(request):
     request.session.modified = True
@@ -52,3 +48,6 @@ def getData(request):
             return HttpResponse("User not auth")
     else:
         return HttpResponse(str(get_token(request)))
+
+def index(request):
+    return render(request, 'index.html', {'hello': 'world'})

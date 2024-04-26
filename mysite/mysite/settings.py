@@ -33,7 +33,7 @@ DATABASES = {
         "NAME": "main",
         "USER": "rootbd",
         "PASSWORD": "",
-        "HOST": "teamfinder.space",
+        "HOST": "91.245.227.179",
         "PORT": "3306"
     }
 }
@@ -41,6 +41,7 @@ DATABASES = {
 # Application definition
 
 INSTALLED_APPS = [
+
     "api.apps.ApiConfig",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,7 +66,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [R'C:\Users\Dude\PycharmProjects\DjangoBackCock\front\teamfinder.space'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,9 +121,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/assets/'
+STATICFILES_DIRS = [R"C:\Users\Dude\PycharmProjects\DjangoBackCock\front\teamfinder.space\assets", ]
+#STATIC_ROOT = BASE_DIR / 'front'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#compressor
+#STATICFILES_FINDERS = [
+#    'compressor.finders.CompressorFinder',
+#]
+#
+#COMPRESS_CSS_FILTERS = [
+#    'compressor.filters.css_default.CssAbsoluteFilter',
+#    'compressor.filters.cssmin.CSSMinFilter',
+#    'compressor.filters.template.TemplateFilter'
+#]
+#COMPRESS_JS_FILTERS = [
+#    'compressor.filters.jsmin.JSMinFilter',
+#]
+#COMPRESS_PRECOMPILERS = (
+#    ('module', 'compressor_toolkit.precompilers.ES6Compiler'),
+#    ('css', 'compressor_toolkit.precompilers.SCSSCompiler'),
+#)
+#COMPRESS_ENABLED = True
